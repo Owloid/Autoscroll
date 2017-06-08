@@ -1,8 +1,6 @@
-"use strict";
-
 var SCROLL = SCROLL;
 
-if (SCROLL === undefined || SCROLL === null) {
+if (SCROLL === null || typeof SCROLL !== 'object') {
   SCROLL = {};
 
   var myreq = null;
@@ -71,4 +69,4 @@ if (SCROLL === undefined || SCROLL === null) {
   SCROLL.toggle = toggle;
 }
 
-SCROLL.toggle();
+typeof SCROLL.toggle === 'function';
