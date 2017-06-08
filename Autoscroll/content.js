@@ -1,8 +1,6 @@
 var SCROLL = SCROLL;
 
-if (SCROLL === null || typeof SCROLL !== 'object') {
-  SCROLL = {};
-
+if (SCROLL === undefined) {
   var myreq = null;
 
   var rate = 20;
@@ -66,7 +64,6 @@ if (SCROLL === null || typeof SCROLL !== 'object') {
     myreq = window.requestAnimationFrame(loop);
   }
 
+  SCROLL = {};
   SCROLL.toggle = toggle;
 }
-
-typeof SCROLL.toggle === 'function';
