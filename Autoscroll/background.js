@@ -1,24 +1,40 @@
 var isLoadedScript = {
-  code: 'var SCROLL = SCROLL; SCROLL !== undefined;'
+  code: 'var SCROLL = SCROLL; ' +
+        'SCROLL !== undefined;'
+};
+
+function checkForContent(callback) {
+    chrome.tabs.executeScript(isLoadedScript, function(res) {
+      if (chrome.runtime.lastError) {
+        console.log(chrome.runtime.lastError.message);
+        return;
+      }
+
+      console.assert(res.length === 1);
+      let loaded = res[0];
+      callback(loaded);
+    });
 }
 
-function checkForContent(tab) {
-  chrome.tabs.executeScript(tab.id, isLoadedScript, function(res) {
-    let loaded = res[0];
-
-    if (loaded) toggle();
-    else loadAndToggle();
-  });
+function load(callback) {
+  chrome.tabs.executeScript({file: 'content.js'}, callback);
 }
 
-function loadAndToggle(id) {
-  chrome.tabs.executeScript(id, {file: 'content.js'}, function(res) {
-    toggle();
-  });
+function toggle(callback) {
+  chrome.tabs.executeScript({code: 'SCROLL.toggle();'}, callback);
 }
 
-function toggle(id) {
-  chrome.tabs.executeScript(id, {code: 'SCROLL.toggle();'});
+function browserAction(tab) {
+  checkForContent(function(loaded) {
+    if (loaded) {
+      toggle();
+    }
+    else {
+      load(function() {
+        toggle();
+      });
+    }
+  })
 }
 
-chrome.browserAction.onClicked.addListener(checkForContent);
+chrome.browserAction.onClicked.addListener(browserAction);
