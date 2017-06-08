@@ -1,9 +1,8 @@
 {
   "manifest_version": 2,
   "name": "Autoscroll",
-  "version": "0.0.1.3",
+  "version": "0.0.3.0",
 
-  "default_locale": "en",
   "description": "Make the current page automatically scroll down",
 
   "browser_action": {
@@ -11,7 +10,7 @@
   },
 
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["backgroundLoader.js"],
     "persistent": false
   },
 
