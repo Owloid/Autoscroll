@@ -1,16 +1,21 @@
 {
-  "name": "Auto Scroll",
+  "manifest_version": 2,
+  "name": "Autoscroll",
+  "version": "0.0.0.2",
+
+  "default_locale": "en",
   "description": "Make the current page automatically scroll down",
-  "version": "0.0.1",
-  "permissions": [
-    "activeTab"
-  ],
+
+  "browser_action": {
+    "default_title": "Scroll"
+  },
+
   "background": {
     "scripts": ["background.js"],
     "persistent": false
   },
-  "browser_action": {
-    "default_title": "Scroll this page"
-  },
-  "manifest_version": 2
+
+  "permissions": [
+    "activeTab"
+  ]
 }
