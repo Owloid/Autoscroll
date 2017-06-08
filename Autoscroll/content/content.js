@@ -30,10 +30,14 @@ if (SCROLL === undefined) {
   }
 
   // doesn't require blocking since it is only used once in the loop
-  function setRate(new_rate) {
+  function setScrollRate(new_rate) {
     if (!isNaN(new_rate)) {
       rate = new_rate;
     }
+  }
+
+  function getScrollRate() {
+    return rate;
   }
 
   function init(timestamp) {
@@ -66,4 +70,6 @@ if (SCROLL === undefined) {
 
   SCROLL = {};
   SCROLL.toggle = toggle;
+  SCROLL.setScrollRate = setScrollRate;
+  SCROLL.getScrollRate = getScrollRate;
 }
