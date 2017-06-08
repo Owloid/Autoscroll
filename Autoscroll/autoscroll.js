@@ -2,7 +2,7 @@
 
 var SCROLL = SCROLL;
 
-if (SCROLL === undefined) {
+if (SCROLL === undefined || SCROLL === null) {
 	SCROLL = {};
 
 	var myreq = null;
@@ -64,8 +64,7 @@ if (SCROLL === undefined) {
 		myreq = window.requestAnimationFrame(loop);
 	}
 
-	SCROLL.start = start;
 	SCROLL.toggle = toggle;
 }
 
-SCROLL.toggle;
+SCROLL.toggle();
